@@ -5,7 +5,7 @@ import ctypes
 user32 = ctypes.windll.user32
 w, h = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
 
-sx, sy = w/2565, h/1440
+sx, sy = w/2560, h/1440
 
 im = Image.open('images/IMAGE_NAME.png', 'r')
 betterColors = False
