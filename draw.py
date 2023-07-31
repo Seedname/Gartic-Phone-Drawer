@@ -1,8 +1,13 @@
 import pyautogui
 from PIL import Image, ImageOps
-import win32gui
+import ctypes
 
-im = Image.open('images/tony.jpg', 'r')
+user32 = ctypes.windll.user32
+w, h = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
+
+sx, sy = w/2565, h/1440
+
+im = Image.open('images/IMAGE_NAME.png', 'r')
 betterColors = False
 pen = 2
 
@@ -10,7 +15,7 @@ sizes = [2, 8, 15, 25, 40]
 size_poses = []
 
 for i in range(0, len(sizes)):
-    size_poses.append((669+i*90, 1343))
+    size_poses.append(((669+i*90)*sx, 1343*sy))
 
 bucket_pos = (2141, 913)
 pen_pos = (2045, 607)
@@ -22,9 +27,9 @@ size_pos = size_poses[pen-1]
 colors = [(0, 0, 0), (102, 102, 102), (32, 79, 198), (255, 255, 255), (170, 170, 170), (97, 198, 250), (49, 114, 45), (140, 26, 16), (140, 70, 32), (81, 173, 76), (234, 51, 41), (238, 128, 63), (167, 115, 48), (140, 26, 77), (189, 97, 91), (246, 195, 76), (234, 51, 141), (242, 178, 170)]
 colors_pos = [] 
 for i in range(0, 6):
-    colors_pos.append((390, i*70+584))
-    colors_pos.append((460, i*70+584))
-    colors_pos.append((525, i*70+584))
+    colors_pos.append((390*sx, (i*70+584)*sy))
+    colors_pos.append((460*sx, (i*70+584)*sy))
+    colors_pos.append((525*sx, (i*70+584)*sy))
 
 # newC = []
 
@@ -43,7 +48,7 @@ for i in range(0, 6):
 # a
 
 
-bounds = [(606, 458),  (1950, 1211)]
+bounds = [(606*sx, 458*sy),  (1950*sx, 1211*sy)]
 
 width = bounds[1][0] - bounds[0][0]
 height = bounds[1][1] - bounds[0][1]
